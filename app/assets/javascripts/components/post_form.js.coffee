@@ -19,12 +19,12 @@
 
   render: ->
     React.DOM.form
-      className: 'form-inline'
+      className: 'form-group'
       onSubmit: @handleSubmit
       React.DOM.div
         className: 'form-group'
-        React.DOM.input
-          type: 'text'
+        React.DOM.textarea
+          type: 'textarea'
           className: 'form-control'
           placeholder: 'Content'
           name: 'content'

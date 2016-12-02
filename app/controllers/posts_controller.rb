@@ -19,6 +19,16 @@ class PostsController < ApplicationController
     @post.destroy
     head :no_content
   end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update(params_post)
+      render json: @post
+    else
+      render json: @post.errors, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def params_post

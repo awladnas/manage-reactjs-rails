@@ -9,10 +9,14 @@
     @setState posts: posts
 
   deletePost: (post) ->
-    console.log "post deleting "
     posts = @state.posts.slice()
     index = posts.lastIndexOf(post)
     posts.splice index, 1
+    @replaceState posts: posts
+
+  editPost:(post, data) ->
+    index = @state.posts.indexOf post
+    posts = React.addons.update(@state.posts, { $splice: [[index, 1, data]] })
     @replaceState posts: posts
 
   render:->
@@ -34,5 +38,5 @@
 
           React.DOM.tbody null,
             for post in @state.posts
-              React.createElement Post, key: post.id, post: post, handleDelete: @deletePost
+              React.createElement Post, key: post.id, post: post, handleDelete: @deletePost, editPost: @editPost
 
